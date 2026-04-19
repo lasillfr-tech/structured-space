@@ -4,13 +4,13 @@ import { Mail, Linkedin, Github, BookOpen, ArrowUpRight } from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Jamie Park" },
+      { title: "연락처 — 박지민" },
       {
         name: "description",
-        content: "Get in touch via email, LinkedIn, GitHub, or the blog.",
+        content: "이메일, 링크드인, 깃허브, 블로그를 통해 편하게 연락 주세요.",
       },
-      { property: "og:title", content: "Contact — Jamie Park" },
-      { property: "og:description", content: "Email, LinkedIn, GitHub, blog." },
+      { property: "og:title", content: "연락처 — 박지민" },
+      { property: "og:description", content: "이메일, 링크드인, 깃허브, 블로그." },
     ],
   }),
   component: ContactPage,
@@ -18,32 +18,32 @@ export const Route = createFileRoute("/contact")({
 
 const channels = [
   {
-    label: "Email",
+    label: "이메일",
     value: "hello@jamiepark.dev",
     href: "mailto:hello@jamiepark.dev",
     icon: Mail,
-    description: "Best for project inquiries and collaborations.",
+    description: "프로젝트 문의나 협업 제안에 가장 좋습니다.",
   },
   {
     label: "LinkedIn",
     value: "linkedin.com/in/jamiepark",
     href: "https://linkedin.com/in/jamiepark",
     icon: Linkedin,
-    description: "Professional background and recommendations.",
+    description: "이력과 추천사를 확인할 수 있습니다.",
   },
   {
     label: "GitHub",
     value: "github.com/jamiepark",
     href: "https://github.com/jamiepark",
     icon: Github,
-    description: "Open-source experiments and side projects.",
+    description: "오픈소스 실험과 사이드 프로젝트.",
   },
   {
-    label: "Blog",
+    label: "블로그",
     value: "jamiepark.dev/notes",
     href: "https://jamiepark.dev/notes",
     icon: BookOpen,
-    description: "Notes on product engineering and design systems.",
+    description: "프로덕트 엔지니어링과 디자인 시스템에 대한 글.",
   },
 ];
 
@@ -51,13 +51,13 @@ function ContactPage() {
   return (
     <section className="mx-auto max-w-4xl px-6 py-20">
       <div className="max-w-2xl animate-fade-up">
-        <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Contact</p>
-        <h1 className="mt-3 font-display text-4xl md:text-5xl text-foreground">
-          Let's start a conversation.
+        <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">연락처</p>
+        <h1 className="mt-3 font-display text-4xl md:text-5xl text-foreground tracking-tight">
+          편하게 대화 나눠요.
         </h1>
         <p className="mt-4 text-[15px] text-muted-foreground">
-          I'm open to product engineering roles, collaborations, and thoughtful conversations about
-          how teams build calm, useful software.
+          프로덕트 엔지니어링 역할, 협업 제안, 그리고 차분하고 유용한 소프트웨어를 만드는 방식에
+          대한 대화는 언제든 환영합니다.
         </p>
       </div>
 
@@ -90,9 +90,9 @@ function ContactPage() {
       </div>
 
       <div className="mt-14 rounded-2xl border border-border bg-secondary/40 p-8 text-center">
-        <p className="font-display text-2xl text-foreground">Prefer email?</p>
+        <p className="font-display text-2xl text-foreground tracking-tight">이메일이 더 편하신가요?</p>
         <p className="mt-2 text-sm text-muted-foreground">
-          The fastest way to reach me is a short note with what you're working on.
+          가장 빠른 방법은 작업 중인 내용에 대한 짧은 메모를 보내주시는 것입니다.
         </p>
         <a
           href="mailto:hello@jamiepark.dev"

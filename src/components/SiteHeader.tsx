@@ -4,10 +4,10 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { to: "/", label: "Home" },
-  { to: "/projects", label: "Projects" },
-  { to: "/skills", label: "Skills" },
-  { to: "/contact", label: "Contact" },
+  { to: "/", label: "홈" },
+  { to: "/projects", label: "프로젝트" },
+  { to: "/skills", label: "스킬" },
+  { to: "/contact", label: "연락처" },
 ] as const;
 
 export function SiteHeader() {
@@ -33,9 +33,9 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-2 group">
           <span className="flex h-7 w-7 items-center justify-center rounded-md bg-foreground text-background text-xs font-semibold tracking-tight">
-            J
+            박
           </span>
-          <span className="font-display text-lg text-foreground">Jamie Park</span>
+          <span className="font-display text-lg text-foreground">박지민</span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
@@ -56,11 +56,11 @@ export function SiteHeader() {
           to="/contact"
           className="hidden md:inline-flex items-center rounded-full border border-foreground/15 bg-foreground px-4 py-2 text-xs font-medium text-background transition hover:bg-foreground/90"
         >
-          Get in touch
+          연락하기
         </Link>
 
         <button
-          aria-label="Toggle menu"
+          aria-label="메뉴 열기"
           onClick={() => setOpen((v) => !v)}
           className="inline-flex h-9 w-9 items-center justify-center rounded-md text-foreground md:hidden"
         >
