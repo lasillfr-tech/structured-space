@@ -5,13 +5,13 @@ import { MindMap } from "@/components/MindMap";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "박지민 — 프로덕트 엔지니어 포트폴리오" },
+      { title: "김신라 — 프로덕트 엔지니어 포트폴리오" },
       {
         name: "description",
         content:
-          "박지민의 개인 포트폴리오. 정리된 사고와 정성스러운 빌드. 프로젝트, 스킬, 연락처를 한 곳에서 확인하세요.",
+          "김신라의 개인 포트폴리오. 정리된 사고와 정성스러운 빌드. 프로젝트, 스킬, 연락처를 한 곳에서 확인하세요.",
       },
-      { property: "og:title", content: "박지민 — 프로덕트 엔지니어 포트폴리오" },
+      { property: "og:title", content: "김신라 — 프로덕트 엔지니어 포트폴리오" },
       { property: "og:description", content: "정리된 사고, 정성스러운 빌드." },
     ],
   }),

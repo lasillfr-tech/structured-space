@@ -6,12 +6,12 @@ import { projects, type Project } from "@/data/portfolio";
 export const Route = createFileRoute("/projects")({
   head: () => ({
     meta: [
-      { title: "프로젝트 — 박지민" },
+      { title: "프로젝트 — 김신라" },
       {
         name: "description",
         content: "역할, 기여, 사용한 도구, 결과를 함께 정리한 주요 프로젝트들. 카드를 누르면 자세한 내용을 볼 수 있습니다.",
       },
-      { property: "og:title", content: "프로젝트 — 박지민" },
+      { property: "og:title", content: "프로젝트 — 김신라" },
       { property: "og:description", content: "역할과 결과 중심의 주요 작업." },
     ],
   }),

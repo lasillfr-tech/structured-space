@@ -69,7 +69,7 @@ export function MindMap() {
         <div className="pointer-events-auto flex flex-col items-center text-center animate-fade-up" style={{ animationDelay: "0.1s" }}>
           <div className="rounded-full bg-card px-6 py-5 shadow-[var(--shadow-elevated)] border border-border">
             <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">PORTFOLIO</p>
-            <p className="font-display text-3xl md:text-4xl text-foreground mt-1">박지민</p>
+            <p className="font-display text-3xl md:text-4xl text-foreground mt-1">김신라</p>
             <p className="text-xs text-muted-foreground mt-1">프로덕트 엔지니어 · 시스템 사고</p>
           </div>
         </div>

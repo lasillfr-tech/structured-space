@@ -33,9 +33,9 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-2 group">
           <span className="flex h-7 w-7 items-center justify-center rounded-md bg-foreground text-background text-xs font-semibold tracking-tight">
-            박
+            김
           </span>
-          <span className="font-display text-lg text-foreground">박지민</span>
+          <span className="font-display text-lg text-foreground">김신라</span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">

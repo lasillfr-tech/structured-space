@@ -4,12 +4,12 @@ import { skillGroups } from "@/data/portfolio";
 export const Route = createFileRoute("/skills")({
   head: () => ({
     meta: [
-      { title: "스킬 — 박지민" },
+      { title: "스킬 — 김신라" },
       {
         name: "description",
         content: "엔지니어링 도메인, 도구, 기술 역량, 일하는 방식으로 그룹화한 스킬.",
       },
-      { property: "og:title", content: "스킬 — 박지민" },
+      { property: "og:title", content: "스킬 — 김신라" },
       { property: "og:description", content: "엔지니어링, 도구, 역량, 일하는 방식." },
     ],
   }),

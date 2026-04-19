@@ -5,7 +5,7 @@ export function SiteFooter() {
     <footer className="border-t border-border/60">
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-6 py-12 md:flex-row md:items-center">
         <div>
-          <p className="font-display text-xl text-foreground">박지민</p>
+          <p className="font-display text-xl text-foreground">김신라</p>
           <p className="mt-1 text-sm text-muted-foreground">
             정리된 사고, 정성스러운 빌드.
           </p>

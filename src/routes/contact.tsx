@@ -4,12 +4,12 @@ import { Mail, Linkedin, Github, BookOpen, ArrowUpRight } from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "연락처 — 박지민" },
+      { title: "연락처 — 김신라" },
       {
         name: "description",
         content: "이메일, 링크드인, 깃허브, 블로그를 통해 편하게 연락 주세요.",
       },
-      { property: "og:title", content: "연락처 — 박지민" },
+      { property: "og:title", content: "연락처 — 김신라" },
       { property: "og:description", content: "이메일, 링크드인, 깃허브, 블로그." },
     ],
   }),
@@ -19,31 +19,31 @@ export const Route = createFileRoute("/contact")({
 const channels = [
   {
     label: "이메일",
-    value: "hello@jamiepark.dev",
-    href: "mailto:hello@jamiepark.dev",
+    value: "lasillfr@gmail.com",
+    href: "mailto:lasillfr@gmail.com",
     icon: Mail,
     description: "프로젝트 문의나 협업 제안에 가장 좋습니다.",
   },
   {
     label: "LinkedIn",
-    value: "linkedin.com/in/jamiepark",
-    href: "https://linkedin.com/in/jamiepark",
+    value: "linkedin.com/in/김신라",
+    href: "https://linkedin.com/in/김신라",
     icon: Linkedin,
     description: "이력과 추천사를 확인할 수 있습니다.",
   },
   {
     label: "GitHub",
-    value: "github.com/jamiepark",
-    href: "https://github.com/jamiepark",
+    value: "github.com/lasillfr-tech",
+    href: "https://github.com/lasillfr-tech",
     icon: Github,
     description: "오픈소스 실험과 사이드 프로젝트.",
   },
   {
     label: "블로그",
-    value: "jamiepark.dev/notes",
-    href: "https://jamiepark.dev/notes",
+    value: "블로그 준비 중",
+    href: "#",
     icon: BookOpen,
-    description: "프로덕트 엔지니어링과 디자인 시스템에 대한 글.",
+    description: "지식 관리와 AI에 대한 글.",
   },
 ];
 
@@ -95,10 +95,10 @@ function ContactPage() {
           가장 빠른 방법은 작업 중인 내용에 대한 짧은 메모를 보내주시는 것입니다.
         </p>
         <a
-          href="mailto:hello@jamiepark.dev"
+          href="mailto:lasillfr@gmail.com"
           className="mt-5 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-foreground/90"
         >
-          hello@jamiepark.dev
+          lasillfr@gmail.com
           <ArrowUpRight className="h-4 w-4" />
         </a>
       </div>
