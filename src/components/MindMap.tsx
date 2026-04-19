@@ -10,20 +10,18 @@ type NodeDef = {
   preview: string;
   to: "/" | "/projects" | "/skills" | "/contact";
   hash?: string;
-  /** position in % of svg viewBox */
   x: number;
   y: number;
 };
 
-// 1000x620 viewBox; center at (500, 310)
 const CENTER = { x: 500, y: 310 };
 
 const nodes: NodeDef[] = [
-  { key: "about", label: "About Me", preview: "Background, focus, and how I work.", to: "/", hash: "about", x: 170, y: 150 },
-  { key: "projects", label: "Projects", preview: "Selected work with role & outcomes.", to: "/projects", x: 830, y: 150 },
-  { key: "skills", label: "Skills", preview: "Engineering, tools, and craft.", to: "/skills", x: 170, y: 470 },
-  { key: "contact", label: "Contact", preview: "Email, LinkedIn, GitHub.", to: "/contact", x: 830, y: 470 },
-  { key: "vision", label: "Vision", preview: "Where I'm heading next.", to: "/", hash: "vision", x: 500, y: 80 },
+  { key: "about", label: "소개", preview: "배경과 관심사, 일하는 방식.", to: "/", hash: "about", x: 170, y: 150 },
+  { key: "projects", label: "프로젝트", preview: "역할과 성과 중심의 주요 작업.", to: "/projects", x: 830, y: 150 },
+  { key: "skills", label: "스킬", preview: "엔지니어링, 도구, 그리고 일하는 방식.", to: "/skills", x: 170, y: 470 },
+  { key: "contact", label: "연락처", preview: "이메일, 링크드인, 깃허브.", to: "/contact", x: 830, y: 470 },
+  { key: "vision", label: "방향성", preview: "앞으로 나아가고자 하는 방향.", to: "/", hash: "vision", x: 500, y: 80 },
 ];
 
 export function MindMap() {
@@ -31,14 +29,12 @@ export function MindMap() {
 
   return (
     <div className="relative w-full">
-      {/* SVG canvas */}
       <svg
         viewBox="0 0 1000 620"
         className="block w-full h-auto"
         preserveAspectRatio="xMidYMid meet"
         aria-hidden="true"
       >
-        {/* connecting curves */}
         {nodes.map((n) => {
           const midX = (CENTER.x + n.x) / 2;
           const midY = (CENTER.y + n.y) / 2 - 30;
@@ -53,11 +49,9 @@ export function MindMap() {
           );
         })}
 
-        {/* center pulse rings */}
         <circle cx={CENTER.x} cy={CENTER.y} r="78" fill="none" stroke="var(--line)" strokeDasharray="2 4" opacity="0.5" />
         <circle cx={CENTER.x} cy={CENTER.y} r="120" fill="none" stroke="var(--line)" strokeDasharray="2 6" opacity="0.25" />
 
-        {/* small dots on nodes */}
         {nodes.map((n) => (
           <g key={`dot-${n.key}`}>
             <circle
@@ -71,18 +65,16 @@ export function MindMap() {
         ))}
       </svg>
 
-      {/* center identity (overlay) */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <div className="pointer-events-auto flex flex-col items-center text-center animate-fade-up" style={{ animationDelay: "0.1s" }}>
           <div className="rounded-full bg-card px-6 py-5 shadow-[var(--shadow-elevated)] border border-border">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Portfolio</p>
-            <p className="font-display text-3xl md:text-4xl text-foreground mt-1">Jamie Park</p>
-            <p className="text-xs text-muted-foreground mt-1">Product Engineer · Systems Thinker</p>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">PORTFOLIO</p>
+            <p className="font-display text-3xl md:text-4xl text-foreground mt-1">박지민</p>
+            <p className="text-xs text-muted-foreground mt-1">프로덕트 엔지니어 · 시스템 사고</p>
           </div>
         </div>
       </div>
 
-      {/* node cards (overlay positioned in % of container) */}
       {nodes.map((n, i) => (
         <NodeCard
           key={n.key}
@@ -110,7 +102,6 @@ function NodeCard({
   onLeave: () => void;
   delay: number;
 }) {
-  // convert svg coord (out of 1000x620) to % position
   const left = (node.x / 1000) * 100;
   const top = (node.y / 620) * 100;
 
@@ -133,13 +124,12 @@ function NodeCard({
         )}
       >
         <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-          {node.key === "vision" ? "Direction" : "Section"}
+          {node.key === "vision" ? "방향" : "섹션"}
         </p>
         <p className="text-sm font-medium text-foreground mt-0.5 whitespace-nowrap">
           {node.label}
         </p>
 
-        {/* hover preview */}
         <div
           className={cn(
             "pointer-events-none absolute left-1/2 top-full mt-2 w-56 -translate-x-1/2 rounded-lg border border-border bg-popover px-3 py-2 text-left text-xs text-muted-foreground shadow-[var(--shadow-elevated)] transition-all duration-300",

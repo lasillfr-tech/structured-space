@@ -4,14 +4,13 @@ import { skillGroups } from "@/data/portfolio";
 export const Route = createFileRoute("/skills")({
   head: () => ({
     meta: [
-      { title: "Skills — Jamie Park" },
+      { title: "스킬 — 박지민" },
       {
         name: "description",
-        content:
-          "Skills grouped by engineering domain, tools, technical capability, and work style.",
+        content: "엔지니어링 도메인, 도구, 기술 역량, 일하는 방식으로 그룹화한 스킬.",
       },
-      { property: "og:title", content: "Skills — Jamie Park" },
-      { property: "og:description", content: "Engineering, tools, capabilities, and work style." },
+      { property: "og:title", content: "스킬 — 박지민" },
+      { property: "og:description", content: "엔지니어링, 도구, 역량, 일하는 방식." },
     ],
   }),
   component: SkillsPage,
@@ -21,13 +20,13 @@ function SkillsPage() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-20">
       <div className="max-w-2xl animate-fade-up">
-        <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Skills</p>
-        <h1 className="mt-3 font-display text-4xl md:text-5xl text-foreground">
-          What I've grown good at.
+        <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">스킬</p>
+        <h1 className="mt-3 font-display text-4xl md:text-5xl text-foreground tracking-tight">
+          잘하게 된 것들.
         </h1>
         <p className="mt-4 text-[15px] text-muted-foreground">
-          A grouped view of where I do my deepest work, the tools I reach for daily, and the way I
-          like to collaborate with a team.
+          가장 깊이 있게 일하는 영역, 매일 손에 잡는 도구, 그리고 팀과 함께 일할 때의 방식까지
+          한 화면에서 정리해 봤습니다.
         </p>
       </div>
 
@@ -39,7 +38,7 @@ function SkillsPage() {
             style={{ animationDelay: `${0.05 + idx * 0.06}s` }}
           >
             <div className="flex items-baseline justify-between gap-3">
-              <h2 className="font-display text-xl text-foreground">{group.title}</h2>
+              <h2 className="font-display text-xl text-foreground tracking-tight">{group.title}</h2>
               <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
                 0{idx + 1}
               </span>
