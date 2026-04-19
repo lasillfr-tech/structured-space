@@ -1,7 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { X } from "lucide-react";
+import { ArrowUpRight, X } from "lucide-react";
 import { projects, type Project } from "@/data/portfolio";
+
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -9,117 +12,190 @@ export const Route = createFileRoute("/projects")({
       { title: "프로젝트 — 김신라" },
       {
         name: "description",
-        content: "역할, 기여, 사용한 도구, 결과를 함께 정리한 주요 프로젝트들. 카드를 누르면 자세한 내용을 볼 수 있습니다.",
+        content: "역할, 기여, 사용한 도구, 결과를 함께 정리한 주요 프로젝트들.",
       },
       { property: "og:title", content: "프로젝트 — 김신라" },
-      { property: "og:description", content: "역할과 결과 중심의 주요 작업." },
     ],
   }),
   component: ProjectsPage,
 });
 
+function Reveal({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.9, ease: EASE, delay }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 function ProjectsPage() {
   const [active, setActive] = useState<Project | null>(null);
 
   return (
-    <section className="mx-auto max-w-6xl px-6 py-20">
-      <div className="max-w-2xl animate-fade-up">
-        <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">프로젝트</p>
-        <h1 className="mt-3 font-display text-4xl md:text-5xl text-foreground tracking-tight">
-          출시된 작업, 그리고 그 맥락.
-        </h1>
-        <p className="mt-4 text-[15px] text-muted-foreground">
-          각 카드는 제가 맡은 역할, 책임진 기여, 그리고 의미 있었던 결과를 보여줍니다. 카드를 누르면
-          전체 이야기를 읽어볼 수 있습니다.
-        </p>
-      </div>
+    <>
+      <section className="pt-32 pb-24 md:pt-40 md:pb-32">
+        <div className="site-container">
+          {/* Page header */}
+          <Reveal>
+            <p className="section-label text-muted-foreground/50 mb-6">프로젝트</p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <h1 className="text-heading font-display text-foreground max-w-3xl">
+              출시된 작업, 그리고 그 맥락.
+            </h1>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mt-6 text-[15px] text-muted-foreground max-w-lg leading-relaxed">
+              각 항목은 제가 맡은 역할, 책임진 기여, 그리고 의미 있었던 결과를 보여줍니다.
+            </p>
+          </Reveal>
 
-      <div className="mt-12 grid gap-4 md:grid-cols-2">
-        {projects.map((p) => (
-          <button
-            key={p.slug}
-            onClick={() => setActive(p)}
-            className="group text-left rounded-xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-elevated)] hover:border-primary/30"
-          >
-            <div className="flex items-baseline justify-between gap-4">
-              <p className="font-display text-xl text-foreground tracking-tight">{p.name}</p>
-              <span className="text-xs text-muted-foreground">{p.year}</span>
-            </div>
-            <p className="mt-2 text-sm text-muted-foreground">{p.summary}</p>
+          {/* Project list */}
+          <div className="mt-20 md:mt-24">
+            {projects.map((project, i) => (
+              <Reveal key={project.slug} delay={i * 0.08}>
+                <div className="border-t border-border/40 project-row">
+                  <button
+                    onClick={() => setActive(project)}
+                    className="w-full text-left group py-7 md:py-9"
+                  >
+                    <div className="grid grid-cols-[2.5rem_1fr_auto] md:grid-cols-[3.5rem_1fr_auto] items-start gap-4">
+                      {/* Number */}
+                      <span className="font-mono text-[11px] text-muted-foreground/50 tracking-[0.1em] pt-1.5">
+                        0{i + 1}
+                      </span>
 
-            <dl className="mt-5 grid grid-cols-2 gap-4 text-xs">
-              <div>
-                <dt className="text-muted-foreground/70 uppercase tracking-[0.14em] text-[10px]">역할</dt>
-                <dd className="mt-1 text-foreground">{p.role}</dd>
-              </div>
-              <div>
-                <dt className="text-muted-foreground/70 uppercase tracking-[0.14em] text-[10px]">결과</dt>
-                <dd className="mt-1 text-foreground line-clamp-2">{p.takeaway}</dd>
-              </div>
-            </dl>
+                      {/* Title + summary */}
+                      <div>
+                        <p className="project-row-title text-subheading font-display text-foreground group-hover:text-muted-foreground transition-colors duration-400">
+                          {project.name}
+                        </p>
+                        <p className="mt-3 text-[13px] text-muted-foreground/70 max-w-xl leading-relaxed">
+                          {project.summary}
+                        </p>
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          {project.tools.map((tool) => (
+                            <span
+                              key={tool}
+                              className="text-[11px] border border-border/40 px-2.5 py-0.5 text-muted-foreground/50"
+                            >
+                              {tool}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
 
-            <div className="mt-5 flex flex-wrap gap-1.5">
-              {p.tools.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-full border border-border bg-secondary/60 px-2.5 py-1 text-[11px] text-muted-foreground"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-          </button>
-        ))}
-      </div>
+                      {/* Year + arrow */}
+                      <div className="flex flex-col items-end gap-3 pt-1">
+                        <span className="text-[12px] text-muted-foreground/50">
+                          {project.year}
+                        </span>
+                        <ArrowUpRight
+                          size={16}
+                          className="text-muted-foreground/40 group-hover:text-foreground group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-300"
+                        />
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              </Reveal>
+            ))}
+            <div className="border-t border-border/40" />
+          </div>
+        </div>
+      </section>
 
-      {active && <ProjectModal project={active} onClose={() => setActive(null)} />}
-    </section>
+      {/* Detail modal */}
+      <AnimatePresence>
+        {active && (
+          <ProjectModal project={active} onClose={() => setActive(null)} />
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
-function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
+function ProjectModal({
+  project,
+  onClose,
+}: {
+  project: Project;
+  onClose: () => void;
+}) {
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-foreground/30 px-4 py-6 backdrop-blur-sm md:items-center"
+    <motion.div
+      key="backdrop"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
       onClick={onClose}
+      className="fixed inset-0 z-50 flex items-end justify-center md:items-center bg-background/80 backdrop-blur-md px-4 py-6"
     >
-      <div
-        className="relative max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-border bg-card p-8 shadow-[var(--shadow-elevated)] animate-fade-up"
+      <motion.div
+        key="panel"
+        initial={{ opacity: 0, y: 32 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 16 }}
+        transition={{ duration: 0.5, ease: EASE }}
         onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-2xl max-h-[88vh] overflow-y-auto bg-card border border-border/60 p-8 md:p-10"
       >
+        {/* Close */}
         <button
           onClick={onClose}
           aria-label="닫기"
-          className="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground hover:bg-secondary hover:text-foreground"
+          className="absolute right-5 top-5 flex h-8 w-8 items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
         >
-          <X className="h-4 w-4" />
+          <X size={16} />
         </button>
 
-        <p className="text-xs text-muted-foreground">{project.year}</p>
-        <h2 className="mt-1 font-display text-3xl text-foreground tracking-tight">{project.name}</h2>
-        <p className="mt-3 text-[15px] text-muted-foreground">{project.summary}</p>
+        {/* Header */}
+        <p className="section-label text-muted-foreground/50 mb-3">{project.year}</p>
+        <h2 className="font-display text-[clamp(1.5rem,3vw,2.5rem)] text-foreground tracking-tight leading-tight">
+          {project.name}
+        </h2>
+        <p className="mt-4 text-[15px] text-muted-foreground leading-relaxed">
+          {project.summary}
+        </p>
 
-        <div className="mt-6 grid gap-5 sm:grid-cols-2">
-          <Field label="역할" value={project.role} />
-          <Field label="핵심 기여" value={project.contribution} />
-          <Field label="사용 도구" value={project.tools.join(" · ")} />
-          <Field label="결과" value={project.takeaway} />
+        {/* Fields */}
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 border-t border-border/40 pt-8">
+          {[
+            { label: "역할",       value: project.role         },
+            { label: "핵심 기여",  value: project.contribution },
+            { label: "사용 도구",  value: project.tools.join(" · ") },
+            { label: "결과",       value: project.takeaway     },
+          ].map(({ label, value }) => (
+            <div key={label}>
+              <p className="section-label text-muted-foreground/40 mb-2">{label}</p>
+              <p className="text-[14px] text-foreground leading-relaxed">{value}</p>
+            </div>
+          ))}
         </div>
 
-        <div className="mt-7 border-t border-border pt-6">
-          <p className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">상세</p>
-          <p className="mt-3 text-[15px] leading-relaxed text-foreground/90">{project.detail}</p>
+        {/* Detail */}
+        <div className="mt-8 border-t border-border/40 pt-8">
+          <p className="section-label text-muted-foreground/40 mb-4">상세</p>
+          <p className="text-[15px] leading-[1.75] text-foreground/80">
+            {project.detail}
+          </p>
         </div>
-      </div>
-    </div>
-  );
-}
-
-function Field({ label, value }: { label: string; value: string }) {
-  return (
-    <div>
-      <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{label}</p>
-      <p className="mt-1.5 text-sm text-foreground">{value}</p>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
