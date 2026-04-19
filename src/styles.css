@@ -157,8 +157,54 @@
     border-color: var(--color-border);
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
+  .font-display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .mindmap-line {
+    stroke: var(--line);
+    stroke-width: 1.25;
+    fill: none;
+    transition: stroke 600ms var(--transition-smooth), stroke-width 600ms var(--transition-smooth);
+  }
+  .mindmap-line.active {
+    stroke: var(--line-active);
+    stroke-width: 1.75;
+  }
+  .node-dot {
+    transition: all 500ms var(--transition-smooth);
+  }
+}
+
+@keyframes draw-line {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-draw {
+  stroke-dasharray: 1000;
+  animation: draw-line 1.6s var(--transition-smooth) forwards;
+}
+.animate-fade-up {
+  animation: fade-up 700ms var(--transition-smooth) both;
 }
